@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import * as dat from 'dat.gui'
 
 @Component({
   selector: 'app-root',
@@ -11,13 +9,6 @@ import * as dat from 'dat.gui'
 export class AppComponent {
   title = 'chat-application';
   ngOnInit(){
-    
-    // Texture Loader
-    const loader = new THREE.TextureLoader()
-    const cross = loader.load('./whiteBG.png')
-
-    // Debug
-    const gui = new dat.GUI()
     
     // Canvas
     const canvas = document.querySelector('canvas.webgl')!

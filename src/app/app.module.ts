@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { GlobeComponent } from './components/globe/globe.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     GlobeComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ChatRoomComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
