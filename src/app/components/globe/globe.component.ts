@@ -21,13 +21,12 @@ export class GlobeComponent {
     const scene = new THREE.Scene()
     
     // Objects
-    const geometry = new THREE.TorusGeometry( .7, .2, 16, 100 );
+    const geometry = new THREE.TorusGeometry(.7, .2, 16, 100);
 
     // Materials
     
     const material = new THREE.PointsMaterial({
       size: 0.002,
-      transparent: true,
     })
     
     // Mesh
@@ -36,11 +35,11 @@ export class GlobeComponent {
     
     // Lights
     
-    const pointLight = new THREE.PointLight(0xffffff, 0.1)
-    pointLight.position.x = 2
-    pointLight.position.y = 3
-    pointLight.position.z = 4
-    scene.add(pointLight)
+    // const pointLight = new THREE.PointLight(0xffffff, 0.1)
+    // pointLight.position.x = 2
+    // pointLight.position.y = 3
+    // pointLight.position.z = 4
+    // scene.add(pointLight)
     
     /**
      * Sizes
@@ -87,7 +86,7 @@ export class GlobeComponent {
         alpha: true
     })
     renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     
 
     /**

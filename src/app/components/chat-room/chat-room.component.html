@@ -6,6 +6,8 @@
                     class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Leave
                     Chat</button>
 
+                <br>
+                <span *ngFor="let users of all_users; let last = last">{{ users }}{{ !last ? ', ' : '' }}</span>
                 <div style="height: 500px; width: 600px; background-color: black; color: white;">
                     <h1 *ngFor="let messages of all_messages">
                         {{messages}}
@@ -16,7 +18,7 @@
                     <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
                         <input type="text" formControlName="message_user"
                             class="bg-white-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Your message..."required>
+                            placeholder="Your message..." required>
                         <button type="submit" [disabled]="sendMessageForm.invalid" (click)="sendMessage()"
                             class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                             <svg class="w-5 h-5 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
