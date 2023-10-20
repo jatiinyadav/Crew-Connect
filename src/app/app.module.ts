@@ -8,6 +8,7 @@ import { GlobeComponent } from './components/globe/globe.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatRoomComponent } from './components/chat-room/chat-room.component';
+import { NgToastModule } from 'ng-angular-popup';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgToastModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

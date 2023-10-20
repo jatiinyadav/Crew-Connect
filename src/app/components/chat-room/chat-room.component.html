@@ -10,7 +10,7 @@
                 <span *ngFor="let users of all_users; let last = last">{{ users }}{{ !last ? ', ' : '' }}</span>
                 <div style="height: 500px; width: 600px; background-color: black; color: white;">
                     <h1 *ngFor="let messages of all_messages">
-                        {{messages}}
+                        {{messages.userName}} : {{messages.message}} on {{messages.sendOn | date}}
                     </h1>
                 </div>
                 <form [formGroup]="sendMessageForm">

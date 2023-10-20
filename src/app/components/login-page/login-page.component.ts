@@ -16,13 +16,14 @@ export class LoginPageComponent {
 
   ngOnInit() {
     this.joinGroupForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: ['@wuh-group.com', Validators.required],
       roomname: ['', Validators.required]
     })
   }
 
   joinRoom(){
     const {username, roomname} = this.joinGroupForm.value
+    this.chartService.logged_in_username = username;
     this.chartService.joinRoom(username, roomname)
     .then(() =>{
       this.router.navigate(['/chat-room'])

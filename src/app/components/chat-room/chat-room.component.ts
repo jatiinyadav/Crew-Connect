@@ -13,9 +13,9 @@ export class ChatRoomComponent {
   sendMessageForm !: FormGroup;
   formBuilderMessage = inject(FormBuilder)
   router = inject(Router)
-
   chatService = inject(ChatService);
-  all_messages: string[] = [];
+  logged_in_user: string = this.chatService.logged_in_username.split('@')[0].split('.').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
+  all_messages: any[] = [];
   all_users: string[] = []
 
   ngOnInit() {
@@ -28,6 +28,7 @@ export class ChatRoomComponent {
         this.all_messages = allMessages;
       }
     })
+
     this.chatService.all_online_users$.subscribe({
       next: (allUsers) => {
         console.log(allUsers);
@@ -36,12 +37,12 @@ export class ChatRoomComponent {
     })
   }
 
-  sendMessage(){
-    const {message_user} = this.sendMessageForm.value;
+  sendMessage() {
+    const { message_user } = this.sendMessageForm.value;
     this.chatService.sendMessage(message_user);
   }
 
-  leaveChat(){
+  leaveChat() {
     this.chatService.leaveRoom()
     this.router.navigate(['/login'])
   }
