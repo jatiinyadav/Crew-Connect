@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Group } from 'src/app/models/group';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ChatRoomComponent {
   router = inject(Router)
   chatService = inject(ChatService);
   logged_in_user: string = this.chatService.logged_in_username.split('@')[0].split('.').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
-  all_messages: any[] = [];
+  all_messages: Group[] = [];
   all_users: string[] = []
 
   ngOnInit() {
@@ -24,14 +25,12 @@ export class ChatRoomComponent {
     })
     this.chatService.all_messages$.subscribe({
       next: (allMessages) => {
-        console.log(allMessages);
         this.all_messages = allMessages;
       }
     })
 
     this.chatService.all_online_users$.subscribe({
       next: (allUsers) => {
-        console.log(allUsers);
         this.all_users = allUsers;
       }
     })
