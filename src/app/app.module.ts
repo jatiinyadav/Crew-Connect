@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { DatePipe } from '@angular/common';
+import { CreateRoomComponent } from './components/create-room/create-room.component';
+import { HeaderComponent } from './components/_baseComponents/header/header.component';
+import { FooterComponent } from './components/_baseComponents/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { DatePipe } from '@angular/common';
     LandingPageComponent,
     GlobeComponent,
     LoginPageComponent,
-    ChatRoomComponent
+    ChatRoomComponent,
+    CreateRoomComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

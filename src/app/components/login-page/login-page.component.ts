@@ -17,7 +17,8 @@ export class LoginPageComponent {
   ngOnInit() {
     this.joinGroupForm = this.formBuilder.group({
       username: ['@wuh-group.com', Validators.required],
-      roomname: ['', Validators.required]
+      roomname: ['', Validators.required],
+      roomcode: ['', Validators.nullValidator]
     })
   }
 

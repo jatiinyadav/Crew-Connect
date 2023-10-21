@@ -1,8 +1,11 @@
-<div style="overflow-y: hidden;">
-    <div class="alignCenter">
+<div style="height:98vh; display:flex; flex-direction: column; justify-content: space-between;">
+    <div>
+        <app-header></app-header>
+    </div>
+    <div>
         <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;">
             <div>
-                <button type="button" (click)="leaveChat()"
+                <button type="button" (click)="leaveChat();"
                     class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Leave
                     Chat</button>
 
@@ -34,5 +37,8 @@
 
 
         </div>
+    </div>
+    <div>
+        <app-footer></app-footer>
     </div>
 </div>

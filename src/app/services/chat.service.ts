@@ -20,7 +20,6 @@ export class ChatService {
   public connection: HubConnection = new HubConnectionBuilder()
     .withUrl('https://localhost:7264/chat')
     .withAutomaticReconnect()
-    .configureLogging(LogLevel.Information)
     .build()
 
   constructor() {

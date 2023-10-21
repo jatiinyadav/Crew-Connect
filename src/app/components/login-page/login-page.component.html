@@ -1,33 +1,39 @@
-<div style="overflow-y: hidden;">
-    <div class="alignCenter">
-        <div style="display: flex; justify-content: space-around; align-items: center;text-align: left;">
-            <div style="background-color: black;">
-                <form [formGroup]="joinGroupForm">
+<div style="height:98vh; display:flex; flex-direction: column; justify-content: space-between;">
+    <div>
+        <app-header></app-header>
+    </div>
+    <div>
+        <div style="width: 20%; margin: 0 auto;">
+            <form [formGroup]="joinGroupForm">
 
-                    <button type="button" [routerLink]="'/'" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back to Home</button>
-                    
-                    <br>
-                    <br>
+                <div class="mb-6">
+                    <label for="name" class="block mb-2 text-sm font-medium text-white-900 dark:text-white">Full
+                        Name</label>
+                    <input type="text" formControlName="username"
+                        class="bg-white-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="room" class="block mb-2 text-sm font-medium text-white-900 dark:text-white">Group
+                        Name</label>
+                    <input type="text" formControlName="roomname"
+                        class="bg-white-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <h1 class="mb-3">or</h1>
+                <div class="mb-6">
+                    <label for="room" class="block mb-2 text-sm font-medium text-white-900 dark:text-white">Enter Code</label>
+                    <input type="text" formControlName="roomcode"
+                        class="bg-white-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <button type="submit" [disabled]="joinGroupForm.invalid" (click)="joinRoom()"
+                    class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Join Room</button>
 
-                    <div class="mb-6">
-                        <label for="name" class="block mb-2 text-sm font-medium text-white-900 dark:text-white">Full
-                            Name</label>
-                        <input type="text" formControlName="username"
-                            class="bg-white-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="mb-6">
-                        <label for="room" class="block mb-2 text-sm font-medium text-white-900 dark:text-white">Group
-                            Name</label>
-                        <input type="text" formControlName="roomname"
-                            class="bg-white-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <button type="submit" [disabled]="joinGroupForm.invalid" (click)="joinRoom()"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
-
-                </form>
-            </div>
+            </form>
         </div>
+    </div>
+    <div>
+        <app-footer></app-footer>
     </div>
 </div>
