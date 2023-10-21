@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
@@ -13,26 +13,34 @@ export class CreateRoomComponent {
 
   createGroupForm!: FormGroup;
   formBuilder = inject(FormBuilder)
-  popupMessage = inject(NgToastService);
   router = inject(Router);
   chartService = inject(ChatService)
 
-  ngOnInit(){
+  ngOnInit() {
     this.createGroupForm = this.formBuilder.group({
       adminName: ['', Validators.required],
       groupName: ['', Validators.required]
     })
   }
 
-  createRoom(){
-    const {adminName,groupName} = this.createGroupForm.value;
-    this.popupMessage.success({ detail: `Group ${groupName} created.`, summary: `xYT2QW copied to clipboard!!!`, duration: 5000, position: 'topRight' });
-    this.chartService.joinRoom(adminName, groupName)
-    .then(() =>{
-      this.router.navigate(['/chat-room'])
-    })
-    .catch((err) =>{
-      console.log(err);
+  @ViewChild('adminNameInput') adminNameInput!: ElementRef;
+
+  ngAfterViewInit() {
+    this.adminNameInput.nativeElement.focus();
+  }
+
+  async createRoom() {
+    const { adminName, groupName } = this.createGroupForm.value;
+    this.chartService.findGroupinDB(groupName).then((created: boolean) => {
+      if (!created) {
+        this.chartService.joinRoom(adminName, groupName)
+          .then(() => {
+            this.router.navigate(['/chat-room'])
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
     })
   }
 
