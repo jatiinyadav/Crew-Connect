@@ -1,1 +1,4 @@
-@import '../../styles/common.css'
+@import '../../styles/common.css';
+::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}

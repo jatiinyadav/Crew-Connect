@@ -13,11 +13,12 @@ export class ChatRoomComponent {
 
   sendMessageForm !: FormGroup;
   formBuilderMessage = inject(FormBuilder)
-  router = inject(Router)
   chatService = inject(ChatService);
   logged_user: string = this.chatService.logged_in_username.split('@')[0].split('.').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
   all_messages: Group[] = [];
   all_users: string[] = []
+  groupName = this.chatService.groupName;
+  imageURL = this.chatService.imageURL;
 
   ngOnInit() {
     this.sendMessageForm = this.formBuilderMessage.group({
@@ -36,15 +37,13 @@ export class ChatRoomComponent {
     })
   }
 
-  sendMessage() {
-    var contentDiv = document.getElementById("chatDiv");
-    contentDiv!.scrollTop = contentDiv!.scrollHeight;
-    const { message_user } = this.sendMessageForm.value;
-    this.chatService.sendMessage(message_user);
+  formatName(name: string) : string{
+    return this.chatService.formatUserName(name)
   }
 
-  leaveChat() {
-    this.chatService.leaveRoom()
-    this.router.navigate(['/login'])
+  sendMessage() {
+    const { message_user } = this.sendMessageForm.value;
+    this.chatService.sendMessage(message_user, this.groupName, this.imageURL);
+    this.sendMessageForm.reset()
   }
 }

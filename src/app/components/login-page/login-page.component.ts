@@ -14,7 +14,7 @@ export class LoginPageComponent {
   formBuilder = inject(FormBuilder)
   router = inject (Router)
   popupMessage = inject(NgToastService);
-  chartService = inject(ChatService)
+  chatService = inject(ChatService)
 
   @ViewChild('fullName') fullName!: ElementRef;
 
@@ -30,11 +30,11 @@ export class LoginPageComponent {
   }
 
   joinRoom(){
-    const {username, roomname} = this.joinGroupForm.value
-    this.chartService.logged_in_username = username;
-    this.chartService.findGroupinDB(roomname).then((created: boolean) => {
+    const {username, roomname, imageURL} = this.joinGroupForm.value
+    this.chatService.logged_in_username = username;
+    this.chatService.findGroupinDB(username, roomname, imageURL, false).then((created: boolean) => {
       if (created) {
-        this.chartService.joinRoom(username, roomname)
+        this.chatService.joinRoom(username, roomname, imageURL)
           .then(() => {
             this.router.navigate(['/chat-room'])
           })

@@ -18,7 +18,8 @@ export class CreateRoomComponent {
 
   ngOnInit() {
     this.createGroupForm = this.formBuilder.group({
-      adminName: ['', Validators.required],
+      adminName: ['@wuh-group.com', Validators.required],
+      imageURL: ['https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon', Validators.required],
       groupName: ['', Validators.required]
     })
   }
@@ -26,14 +27,14 @@ export class CreateRoomComponent {
   @ViewChild('adminNameInput') adminNameInput!: ElementRef;
 
   ngAfterViewInit() {
-    this.adminNameInput.nativeElement.focus();
+    // this.adminNameInput.nativeElement.focus();
   }
 
   async createRoom() {
-    const { adminName, groupName } = this.createGroupForm.value;
-    this.chartService.findGroupinDB(groupName).then((created: boolean) => {
+    let { adminName, groupName, imageURL } = this.createGroupForm.value;
+    this.chartService.findGroupinDB(adminName, groupName, imageURL, true).then((created: boolean) => {
       if (!created) {
-        this.chartService.joinRoom(adminName, groupName)
+        this.chartService.joinRoom(adminName, groupName, imageURL)
           .then(() => {
             this.router.navigate(['/chat-room'])
           })

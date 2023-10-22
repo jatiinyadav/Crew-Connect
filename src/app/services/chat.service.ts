@@ -9,7 +9,9 @@ import { Group } from '../models/group';
 })
 export class ChatService {
   popupMessage = inject(NgToastService);
-  public logged_in_username: string = ""
+  public logged_in_username = "";
+  public groupName = "";
+  public imageURL = "";
 
   public all_messages: Group[] = []
   public all_online_users: string[] = []
@@ -26,24 +28,26 @@ export class ChatService {
 
     this.startConnection()
 
-    this.connection.on("AllMessages", (username: string, message: string) => {
+    this.connection.on("AllMessages", (username: string, message: string, imageURL: string) => {
       let newMessage: Group = {
         userName: `${this.formatUserName(username)}`,
         message: message,
         sendOn: Date.now(),
-        imageUrl: ''
+        imageUrl: imageURL
       }
       this.all_messages.push(newMessage);
       this.all_messages$.next(this.all_messages);
     })
 
-    this.connection.on("JoinedGroup", (bot_name: string, username: string) => {
+    this.connection.on("JoinedGroup", (groupName: string, username: string, imageURL: string) => {
       this.logged_in_username = `${this.formatUserName(username)}`;
-      this.messages();
+      this.groupName = groupName;
+      this.imageURL = imageURL;
+      this.messages(groupName);
       this.popupMessage.success({ detail: `${this.formatUserName(username)} has joined the group`, summary: `${username}`, duration: 5000, position: 'topRight' });
     })
 
-    this.connection.on("LeaveGroup", (bot_name: string, username: string) => {
+    this.connection.on("LeaveGroup", (groupName: string, username: string) => {
       this.popupMessage.error({ detail: `${this.formatUserName(username)} has left the group`, summary: `${username}`, duration: 5000, position: 'topRight' });
     })
 
@@ -59,6 +63,10 @@ export class ChatService {
 
     this.connection.on("Username", (username: string) => {
       this.logged_in_username = `${this.formatUserName(username)}`;
+    })
+
+    this.connection.on("NewGroupCreated", (newGroup: Group) => {
+      console.log(newGroup.message);
     })
   }
 
@@ -76,27 +84,28 @@ export class ChatService {
   }
 
   // Join Room 
-  public async joinRoom(User: string, Room: string) {
-    return this.connection.invoke("JoinGroup", { User, Room })
+  public async joinRoom(User: string, Room: string, imageURL: string) {
+    return this.connection.invoke("JoinGroup", { User, Room }, "https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon")
   }
 
   // Send Messages 
-  public async sendMessage(message: string) {
-    return this.connection.invoke("SendMessage", message)
+  public async sendMessage(message: string, groupName: string, imageURL: string) {
+    return this.connection.invoke("SendMessage", message, groupName, imageURL)
   }
 
   // Check If Group exits or not in DB
-  public async findGroupinDB(groupName: string): Promise<boolean> {
-    return this.connection.invoke("GetCollectionsNames", groupName).then((found: boolean) => {
-      found && this.popupMessage.error({ detail: `${groupName} cannot be created.`, summary: `Please use another name.`, duration: 5000, position: 'topRight' })
+  public async findGroupinDB(adminName: string, groupName: string, imageURL: string, createGroup: boolean): Promise<boolean> {
+    adminName = this.formatUserName(adminName);
+    return this.connection.invoke("GetCollectionsNames", adminName, groupName, "https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon", createGroup).then((found: boolean) => {
+      found && this.popupMessage.error({ detail: `${groupName} already exists.`, summary: `Please use another name.`, duration: 5000, position: 'topRight' })
       !found && this.popupMessage.success({ detail: `${groupName} created successfully`, summary: `xeT5 code copied to clipboard`, duration: 5000, position: 'topRight' })
       return found;
     })
   }
 
   // Receive Messages
-  public async messages() {
-    this.connection.invoke("SendAllMessages").then((result: Group[]) => {
+  public async messages(groupName: string) {
+    this.connection.invoke("SendAllMessages", groupName).then((result: Group[]) => {
       let all_messages: Group[] = []
       result.forEach((user: Group) => {
         user.userName = this.formatUserName(user.userName);
