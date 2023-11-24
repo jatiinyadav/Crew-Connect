@@ -44,11 +44,11 @@ export class ChatService {
       this.groupName = groupName;
       this.imageURL = imageURL;
       this.messages(groupName);
-      this.popupMessage.success({ detail: `${this.formatUserName(username)} has joined the group`, summary: `${username}`, duration: 5000, position: 'topRight' });
+      this.popupMessage.success({ detail: `${this.formatUserName(username)} has joined the group.`, summary: `${username}`, duration: 5000, position: 'topRight' });
     })
 
     this.connection.on("LeaveGroup", (groupName: string, username: string) => {
-      this.popupMessage.error({ detail: `${this.formatUserName(username)} has left the group`, summary: `${username}`, duration: 5000, position: 'topRight' });
+      this.popupMessage.error({ detail: `${this.formatUserName(username)} has left the chat.`, summary: `${username}`, duration: 5000, position: 'topRight' });
     })
 
     this.connection.on("ConnectedUsers", (users: string[]) => {
