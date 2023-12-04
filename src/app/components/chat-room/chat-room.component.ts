@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Group } from 'src/app/models/group';
@@ -20,6 +20,8 @@ export class ChatRoomComponent {
   groupName = this.chatService.groupName;
   imageURL = this.chatService.imageURL;
 
+  @ViewChild('scroll') public scroll!: ElementRef;
+
   ngOnInit() {
     this.sendMessageForm = this.formBuilderMessage.group({
       message_user: ['', Validators.required],
@@ -27,6 +29,7 @@ export class ChatRoomComponent {
     this.chatService.all_messages$.subscribe({
       next: (allMessages) => {
         this.all_messages = allMessages;
+        this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
       }
     })
 
@@ -37,13 +40,16 @@ export class ChatRoomComponent {
     })
   }
 
-  formatName(name: string) : string{
+  formatName(name: string): string {
     return this.chatService.formatUserName(name)
   }
 
-  sendMessage() {
+  async sendMessage() {
     const { message_user } = this.sendMessageForm.value;
-    this.chatService.sendMessage(message_user, this.groupName, this.imageURL);
+    await this.chatService.sendMessage(message_user, this.groupName, this.imageURL);
     this.sendMessageForm.reset()
+    this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
   }
+
+
 }
