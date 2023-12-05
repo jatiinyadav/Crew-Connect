@@ -15,6 +15,7 @@ export class HeaderComponent {
 
   leaveChat() {
     this.chatService.leaveRoom()
+    localStorage.clear()
     this.router.navigate(['/login'])
   }
 }
