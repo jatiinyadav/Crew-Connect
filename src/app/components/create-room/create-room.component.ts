@@ -18,7 +18,7 @@ export class CreateRoomComponent {
 
   ngOnInit() {
     this.createGroupForm = this.formBuilder.group({
-      adminName: ['@wuh-group.com', Validators.required],
+      adminName: ['', Validators.required],
       imageURL: ['https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon', Validators.required],
       groupName: ['', Validators.required]
     })
