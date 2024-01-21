@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Group } from 'src/app/models/group';
 import { ChatService } from 'src/app/services/chat.service';
 
@@ -22,17 +21,30 @@ export class ChatRoomComponent {
 
   @ViewChild('scroll') public scroll!: ElementRef;
 
+  ngAfterViewChecked() {
+    console.log("Called");
+    
+    this.scroll.nativeElement.scrollTop = this.scroll?.nativeElement.scrollHeight;
+  }
+
   ngOnInit() {
+    if(!this.chatService.isGroupJoined){
+      const obj = JSON.parse(localStorage.getItem("logged_user")!)
+      this.logged_user = obj.username
+      setTimeout(() => {
+        this.chatService.joinRoom(obj.email, obj.groupName, obj.imageURL);
+      }, 100)
+    }
     this.sendMessageForm = this.formBuilderMessage.group({
       message_user: ['', Validators.required],
     })
     this.chatService.all_messages$.subscribe({
       next: (allMessages) => {
         this.all_messages = allMessages;
-        this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
+        
       }
     })
-
+    
     this.chatService.all_online_users$.subscribe({
       next: (allUsers) => {
         this.all_users = allUsers;
@@ -48,8 +60,6 @@ export class ChatRoomComponent {
     const { message_user } = this.sendMessageForm.value;
     await this.chatService.sendMessage(message_user, this.groupName, this.imageURL);
     this.sendMessageForm.reset()
-    this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
+    // this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
   }
-
-
 }

@@ -14,7 +14,11 @@ export class HeaderComponent {
   chatService = inject(ChatService)
 
   leaveChat() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 100)
     this.chatService.leaveRoom()
+    localStorage.clear()
     this.router.navigate(['/login'])
   }
 }

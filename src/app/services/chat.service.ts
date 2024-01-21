@@ -12,6 +12,7 @@ export class ChatService {
   public logged_in_username = "";
   public groupName = "";
   public imageURL = "";
+  public isGroupJoined = false;
 
   public all_messages: Group[] = []
   public all_online_users: string[] = []
@@ -21,26 +22,35 @@ export class ChatService {
 
   public connection: HubConnection = new HubConnectionBuilder()
     .withUrl('https://localhost:7264/chat')
-    .withAutomaticReconnect()
     .build()
 
   constructor() {
+    this.connections_and_methods()
+  }
 
-    this.startConnection()
+  async connections_and_methods(){
+    await this.startConnection()
+    this.methods_signalr()
+  }
 
+  methods_signalr() {
     this.connection.on("AllMessages", (username: string, message: string, imageURL: string) => {
+      console.log("Called");
       let newMessage: Group = {
         userName: `${this.formatUserName(username)}`,
         message: message,
         sendOn: Date.now(),
         imageUrl: imageURL
       }
+      console.log(newMessage);
+      
       this.all_messages.push(newMessage);
       this.all_messages$.next(this.all_messages);
     })
 
     this.connection.on("JoinedGroup", (groupName: string, username: string, imageURL: string) => {
       this.logged_in_username = `${this.formatUserName(username)}`;
+      localStorage.setItem("logged_user", JSON.stringify({email:username, username: this.logged_in_username, groupName: groupName, image: imageURL }))
       this.groupName = groupName;
       this.imageURL = imageURL;
       this.messages(groupName);
@@ -78,6 +88,7 @@ export class ChatService {
   public async startConnection() {
     try {
       await this.connection.start()
+      console.log("Connnection Build");
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +96,7 @@ export class ChatService {
 
   // Join Room 
   public async joinRoom(User: string, Room: string, imageURL: string) {
+    this.isGroupJoined = true;
     return this.connection.invoke("JoinGroup", { User, Room }, "https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon")
   }
 
@@ -112,6 +124,8 @@ export class ChatService {
         all_messages.push(user)
       })
       this.all_messages = all_messages;
+      console.log(this.all_messages);
+
       this.all_messages$.next(this.all_messages);
     }).catch(error => {
       console.error("Error while invoking hub method:", error);
