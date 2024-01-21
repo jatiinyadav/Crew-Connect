@@ -19,7 +19,13 @@ export class ChatRoomComponent {
   groupName = this.chatService.groupName;
   imageURL = this.chatService.imageURL;
 
-  // @ViewChild('scroll') public scroll!: ElementRef;
+  @ViewChild('scroll') public scroll!: ElementRef;
+
+  ngAfterViewChecked() {
+    console.log("Called");
+    
+    this.scroll.nativeElement.scrollTop = this.scroll?.nativeElement.scrollHeight;
+  }
 
   ngOnInit() {
     if(!this.chatService.isGroupJoined){
@@ -35,11 +41,10 @@ export class ChatRoomComponent {
     this.chatService.all_messages$.subscribe({
       next: (allMessages) => {
         this.all_messages = allMessages;
-
-        // this.scroll.nativeElement.scrollTop = this.scroll?.nativeElement.scrollHeight;
+        
       }
     })
-
+    
     this.chatService.all_online_users$.subscribe({
       next: (allUsers) => {
         this.all_users = allUsers;
@@ -57,6 +62,4 @@ export class ChatRoomComponent {
     this.sendMessageForm.reset()
     // this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
   }
-
-
 }
