@@ -1,3 +1,5 @@
 /.vs
 /SignalRLearning/bin
 /SignalRLearning/obj
+/MongoDLL/bin
+/MongoDLL/obj
