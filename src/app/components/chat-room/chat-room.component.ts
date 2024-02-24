@@ -21,12 +21,6 @@ export class ChatRoomComponent {
 
   @ViewChild('scroll') public scroll!: ElementRef;
 
-  ngAfterViewChecked() {
-    console.log("Called");
-    
-    this.scroll.nativeElement.scrollTop = this.scroll?.nativeElement.scrollHeight;
-  }
-
   ngOnInit() {
     if(!this.chatService.isGroupJoined){
       const obj = JSON.parse(localStorage.getItem("logged_user")!)

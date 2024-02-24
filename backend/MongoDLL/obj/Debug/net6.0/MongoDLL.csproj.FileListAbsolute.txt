@@ -1,0 +1,13 @@
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\bin\Debug\net6.0\MongoDLL.deps.json
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\bin\Debug\net6.0\MongoDLL.dll
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\bin\Debug\net6.0\MongoDLL.pdb
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.csproj.AssemblyReference.cache
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.AssemblyInfoInputs.cache
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.AssemblyInfo.cs
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.csproj.CoreCompileInputs.cache
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.sourcelink.json
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.dll
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\refint\MongoDLL.dll
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\MongoDLL.pdb
+C:\Jatin Projects\ChatApplication\chat-application\backend\MongoDLL\obj\Debug\net6.0\ref\MongoDLL.dll

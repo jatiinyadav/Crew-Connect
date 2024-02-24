@@ -11,7 +11,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSingleton<ChatService>();
-builder.Services.AddSingleton<GroupsService>();
 builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {

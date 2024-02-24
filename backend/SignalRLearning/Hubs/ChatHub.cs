@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.SignalR;
 using SignalRLearning.ChatInterfaces;
 using SignalRLearning.Services;
+using MongoDLL;
 
 namespace SignalRLearning.Hubs
 {
     public class ChatHub : Hub
     {
         private readonly ChatService _chatService;
-        private readonly GroupsService _groupService;
-        private Group groupMessage;
-        public ChatHub(ChatService chatService, GroupsService groupService)
+        private Group _group = new("", "", "", DateTime.Now);
+
+        public ChatHub(ChatService chatService)
         {
             _chatService = chatService;
-            _groupService = groupService;
         }
         public async Task JoinGroup(UserDetails userDetails, string imageURL)
         {
@@ -34,12 +34,12 @@ namespace SignalRLearning.Hubs
             var user = _chatService.GetUserByConnectionID(Context.ConnectionId);
             if (user != null)
             {
-                groupMessage = new Group(imageURL, user.User!, message, DateTime.Now);
+                _group = new Group(imageURL, user.User!, message, DateTime.Now);
 
                 // Sending the message to all the Clients Connected with that group
                 UpdateUser(user.User!);
                 await Clients.Group(user.Room!).SendAsync("AllMessages", user.User, message, imageURL, DateTime.Now);
-                await _groupService!.AddMessageToDb(groupMessage, groupName);
+                await MongoData.AddMessageToDb(_group, groupName);
             }
         }
 
@@ -78,23 +78,23 @@ namespace SignalRLearning.Hubs
         // Send All the Messages
         public async Task<List<Group>> SendAllMessages(string groupName)
         {
-            var messages = await _groupService.GetAllMessages(groupName);
+            var messages = await MongoData.GetAllMessages(groupName);
             return messages;
         }
 
         // Get All Collection Name from Database
         public async Task<Boolean> GetCollectionsNames(string adminName,string groupName, string imageURL, bool createGroup)
         {
-            List<string> collections = await _groupService.GetAllCollectionData();
+            List<string> collections = await MongoData.GetAllCollectionData();
             if (collections.Contains(groupName))
             {
                 return true;
             }
             if (createGroup)
             {
-                groupMessage = new Group(imageURL, "", $"{adminName} created {groupName}", DateTime.Now);
-                await _groupService.CreateNewCollection(groupMessage, groupName);
-                await Clients.Client(Context.ConnectionId).SendAsync("NewGroupCreated", groupMessage);
+                _group = new Group(imageURL, "", $"{adminName} created {groupName}", DateTime.Now);
+                await MongoData.CreateNewCollection(_group, groupName);
+                await Clients.Client(Context.ConnectionId).SendAsync("NewGroupCreated", _group);
             }
 
             return false;
