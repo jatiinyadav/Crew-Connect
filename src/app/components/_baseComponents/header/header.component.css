@@ -1,0 +1,38 @@
+.dropdown {
+  position: absolute;
+  top: 80px; /* Adjust as needed */
+  right: 20px;
+  width: 20%;
+  background-color: #1d1b1b;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 10px;
+}
+
+.image {
+  width: 100%;
+  height: 100px; /* Adjust image height as needed */
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.image img {
+  width: 100%;
+  height: 95%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.image:hover {
+  filter: blur(1px); /* Apply blur effect on hover */
+  opacity: 0.5; /* Reduce opacity on hover */
+}
+
+.image.selected {
+  border: 1px solid white; /* Border style for the selected image */
+}
+
+.image:hover:not(.selected) {
+  filter: blur(3px); /* Apply blur effect on hover */
+  opacity: 0.5; /* Reduce opacity on hover */
+}

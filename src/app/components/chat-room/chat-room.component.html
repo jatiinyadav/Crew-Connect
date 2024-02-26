@@ -1,4 +1,5 @@
-<div style="height:98vh; display:flex; flex-direction: column; justify-content: space-between;">
+<div style=" width: 100%; height:98vh; display:flex; flex-direction: column; justify-content: space-between; background-size: cover;"
+    [style.background-image]="'url(' + this.chatService.hoveredImageUrl + ')'">
     <div>
         <app-header [show_button]="true"></app-header>
     </div>
@@ -7,13 +8,15 @@
         <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;">
             <div>
                 <!-- <span *ngFor="let users of all_users; let last = last">{{ users }}{{ !last ? ', ' : '' }}</span> -->
-                <div id="chatDiv" #scroll style="height: 800px; width: 850px; background: url('https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=2048x2048&w=is&k=20&c=t9_zg20wVbrBoGn0tw__1fFq4ykeKs15TQQ3x-ehVC0='); color: white; overflow-y: scroll; border-radius: 5px;">
+                <div id="chatDiv" [style.background-image]="'url(' + this.chatService.hoveredImageUrl + ')'" #scroll
+                    style="height: 800px; width: 850px; background-position: center; background-size: cover; color: white; overflow-y: scroll; border-radius: 5px;">
                     <!-- <h1 >
                         {{messages.userName}} : {{messages.message}} on {{messages.sendOn | date}}
                     </h1> -->
                     <div *ngFor="let messages of all_messages">
                         <div *ngIf="messages.userName.length == 0; else not_logged_in_user" class="text-center mt-1">
-                            <span class="badge p-3">{{messages.message}} on {{messages.sendOn | date: 'h:mm a, MMM d'}}</span>
+                            <span class="badge p-3">{{messages.message}} on {{messages.sendOn | date: 'h:mm a,
+                                MMMd'}}</span>
                         </div>
                         <ng-template #not_logged_in_user>
                             <div class="chat chat-start" *ngIf="messages.userName != logged_user; else logged_in_user">
@@ -31,7 +34,7 @@
                         </ng-template>
                         <br>
                         <ng-template #logged_in_user>
-                            <div class="chat chat-end" >
+                            <div class="chat chat-end">
                                 <div class="chat-image avatar">
                                     <div class="w-10 rounded-full mr-2 mb-1">
                                         <img src="{{messages.imageUrl}}" />
