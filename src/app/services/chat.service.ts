@@ -28,7 +28,7 @@ export class ChatService {
     this.connections_and_methods()
   }
 
-  async connections_and_methods(){
+  async connections_and_methods() {
     await this.startConnection()
     this.methods_signalr()
   }
@@ -43,14 +43,14 @@ export class ChatService {
         imageUrl: imageURL
       }
       console.log(newMessage);
-      
+
       this.all_messages.push(newMessage);
       this.all_messages$.next(this.all_messages);
     })
 
     this.connection.on("JoinedGroup", (groupName: string, username: string, imageURL: string) => {
       this.logged_in_username = `${this.formatUserName(username)}`;
-      localStorage.setItem("logged_user", JSON.stringify({email:username, username: this.logged_in_username, groupName: groupName, image: imageURL }))
+      localStorage.setItem("logged_user", JSON.stringify({ email: username, username: this.logged_in_username, groupName: groupName, image: imageURL }))
       this.groupName = groupName;
       this.imageURL = imageURL;
       this.messages(groupName);

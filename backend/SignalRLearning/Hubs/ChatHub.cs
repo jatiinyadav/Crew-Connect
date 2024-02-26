@@ -39,7 +39,7 @@ namespace SignalRLearning.Hubs
                 // Sending the message to all the Clients Connected with that group
                 UpdateUser(user.User!);
                 await Clients.Group(user.Room!).SendAsync("AllMessages", user.User, message, imageURL, DateTime.Now);
-                await MongoData.AddMessageToDb(_group, groupName);
+                await MongoData.AddMessageToDb(_group, user.Room!);
             }
         }
 

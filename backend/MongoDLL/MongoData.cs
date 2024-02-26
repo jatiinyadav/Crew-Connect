@@ -25,7 +25,6 @@ namespace MongoDLL
     }
 
   }
-
   public static class MongoData
   {
     private static readonly IMongoDatabase? _groups;
@@ -37,13 +36,12 @@ namespace MongoDLL
       _groups = mongoClient.GetDatabase("ChatApplication");
     }
 
-    public static async Task<List<Group>> GetAllMessages(string collectionName){
-      ChangeStreamFunction();
-      return await _groups!.GetCollection<Group>(collectionName).Find(_ => true).ToListAsync();
-    }
+    public static async Task<List<Group>> GetAllMessages(string collectionName) =>
+      await _groups!.GetCollection<Group>(collectionName).Find(_ => true).ToListAsync();
 
-    public static async Task AddMessageToDb(Group message, string collectionName) =>
-        await _groups!.GetCollection<Group>(collectionName).InsertOneAsync(message);
+    public static async Task AddMessageToDb(Group message, string collectionName){
+      await _groups!.GetCollection<Group>(collectionName).InsertOneAsync(message);
+    }
 
     public static async Task<List<string>> GetAllCollectionData() =>
         await _groups!.ListCollectionNames().ToListAsync();
@@ -53,6 +51,28 @@ namespace MongoDLL
 
     public static void ChangeStreamFunction()
     {
+
+      Console.WriteLine("Entered...");
+
+      var pipeline = new EmptyPipelineDefinition<ChangeStreamDocument<Group>>();
+
+      var changeStreamOptions = new ChangeStreamOptions
+      {
+        FullDocument = ChangeStreamFullDocumentOption.UpdateLookup
+      };
+
+      using (var cursor = _groups!.GetCollection<Group>("WHI-GBD").Watch(pipeline, changeStreamOptions))
+      {
+        foreach (var change in cursor.ToEnumerable())
+        {
+          if(change.OperationType == ChangeStreamOperationType.Insert)
+          {
+            Console.WriteLine(change.FullDocument.ToJson());
+          };
+        }
+      }
+
+      Console.WriteLine("Press any key to exit...");
     }
   }
 }

@@ -13,12 +13,15 @@ export class HeaderComponent {
   router = inject(Router)
   chatService = inject(ChatService)
 
-  leaveChat() {
-    setTimeout(() => {
-      window.location.reload();
-    }, 100)
-    this.chatService.leaveRoom()
-    localStorage.clear()
-    this.router.navigate(['/login'])
+  leaveChat(back_to_home: boolean) {
+    const result = window.confirm('Are you sure you want leave the chat?');
+    if (result) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 100)
+      this.chatService.leaveRoom()
+      localStorage.clear()
+      back_to_home ? this.router.navigate(['/']) : this.router.navigate(['/login'])
+    }
   }
 }
