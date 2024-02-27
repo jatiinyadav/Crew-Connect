@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.SignalR;
+using SignalRLearning.ChatInterfaces;
 
-namespace SignalRLearning.ChatInterfaces
+namespace SignalRLearning.Models.Interfaces
 {
   public interface IAddMessageToDB
   {

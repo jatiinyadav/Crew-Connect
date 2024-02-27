@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.SignalR;
 
-namespace SignalRLearning.ChatInterfaces
+namespace SignalRLearning.Models.Interfaces
 {
   public interface IUserExitFromChat
   {

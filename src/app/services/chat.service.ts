@@ -132,7 +132,9 @@ export class ChatService {
   // Check If Group exits or not in DB
   public async findGroupinDB(adminName: string, userMessage: UserMessage, createGroup: boolean): Promise<boolean> {
     adminName = this.formatUserName(adminName);
-    return this.connection.invoke("GetCollectionsNames", userMessage, createGroup).then((found: boolean) => {
+    console.log(userMessage);
+
+    return this.connection.invoke("GetCollectionsNames", adminName, userMessage, createGroup).then((found: boolean) => {
       found && this.popupMessage.error({ detail: `${userMessage.groupName} already exists.`, summary: `Please use another name.`, duration: 5000, position: 'topRight' })
       !found && this.popupMessage.success({ detail: `${userMessage.groupName} created successfully`, summary: `xeT5 code copied to clipboard`, duration: 5000, position: 'topRight' })
       return found;

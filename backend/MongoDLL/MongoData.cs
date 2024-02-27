@@ -28,6 +28,7 @@ namespace MongoDLL
 
   public class InsertChangeStream : Hub
   {
+
     public async Task ChangeStreamFunction(IMongoDatabase _groups)
     {
 
@@ -48,9 +49,9 @@ namespace MongoDLL
           if (change.FullDocument != null)
           {
             Console.WriteLine(change.FullDocument.ToJson());
-            // Group _group = new (change.FullDocument.ImageUrl!, change.FullDocument.UserName!, change.FullDocument.Message!, DateTime.Now);
-            // await Clients.Group("WHI-GBD").SendAsync("AllMessages", _group.UserName, _group.Message, _group.ImageUrl, DateTime.Now);
-            }
+            Group _group = new(change.FullDocument.ImageUrl!, change.FullDocument.UserName!, change.FullDocument.Message!, DateTime.Now);
+            //await Clients.Group("WHI-GBD").SendAsync("AllMessages", _group.UserName, _group.Message, _group.ImageUrl, DateTime.Now);
+          }
           else
           {
             Console.WriteLine("Document is null");

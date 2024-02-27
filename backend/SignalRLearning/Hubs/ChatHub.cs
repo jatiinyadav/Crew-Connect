@@ -8,7 +8,7 @@ namespace SignalRLearning.Hubs
   public class ChatHub : Hub
   {
     private readonly ChatClass _chatClass;
-    
+
     public ChatHub(ChatClass chatClass)
     {
       _chatClass = chatClass;

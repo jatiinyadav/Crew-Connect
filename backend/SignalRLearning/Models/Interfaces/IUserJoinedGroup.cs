@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.SignalR;
+using SignalRLearning.ChatInterfaces;
 using SignalRLearning.Services;
 
-namespace SignalRLearning.ChatInterfaces
+namespace SignalRLearning.Models.Interfaces
 {
   public interface IUserJoinedGroup
   {

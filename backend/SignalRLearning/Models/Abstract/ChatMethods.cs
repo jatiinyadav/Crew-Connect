@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.SignalR;
+using SignalRLearning.ChatInterfaces;
+using SignalRLearning.Models.Interfaces;
 
-namespace SignalRLearning.ChatInterfaces
+namespace SignalRLearning.Models.Abstract
 {
   public abstract class ChatMethods : IUserJoinedGroup, IAddMessageToDB, IUserExitFromChat, ICollectionsFromDB
   {

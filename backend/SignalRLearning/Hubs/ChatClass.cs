@@ -2,6 +2,7 @@ using SignalRLearning.ChatInterfaces;
 using Microsoft.AspNetCore.SignalR;
 using SignalRLearning.Services;
 using MongoDLL;
+using SignalRLearning.Models.Abstract;
 
 namespace SignalRLearning.Hubs
 {
