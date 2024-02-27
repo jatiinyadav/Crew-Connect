@@ -47,12 +47,15 @@ export class HeaderComponent {
     }
   }
 
+  back(){
+    setTimeout(() => {
+      window.location.reload()
+    }, 100)
+  }
+
   leaveChat(back_to_home: boolean) {
     const result = window.confirm('Are you sure you want leave the chat?');
     if (result) {
-      setTimeout(() => {
-        window.location.reload();
-      }, 100)
       this.chatService.leaveRoom()
       localStorage.clear()
       back_to_home ? this.router.navigate(['/']) : this.router.navigate(['/login'])

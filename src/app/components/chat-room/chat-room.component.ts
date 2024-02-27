@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Group } from 'src/app/models/group';
+import { UserMessage } from 'src/app/models/userMessage';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -19,7 +20,16 @@ export class ChatRoomComponent {
   groupName = this.chatService.groupName;
   imageURL = this.chatService.imageURL;
 
-  @ViewChild('scroll') public scroll!: ElementRef;
+  @ViewChild('scroll', { static: false }) scrollingDiv!: ElementRef;
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    var element = document.getElementById("chatDiv");
+    element!.scrollTop = element!.scrollHeight;
+  }
 
   ngOnInit() {
     if(!this.chatService.isGroupJoined){
@@ -52,7 +62,19 @@ export class ChatRoomComponent {
 
   async sendMessage() {
     const { message_user } = this.sendMessageForm.value;
-    await this.chatService.sendMessage(message_user, this.groupName, this.imageURL);
+    this.chatService.usersImages.forEach(img => {
+      if (img.includes(this.logged_user.split(' ')[0].toLowerCase())) {
+        this.imageURL = img;
+      }
+    });
+
+    const userMessage : UserMessage = {
+      message: message_user,
+      groupName: this.groupName,
+      imageURL: this.imageURL
+    }
+
+    await this.chatService.sendMessage(userMessage);
     this.sendMessageForm.reset()
     // this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
   }

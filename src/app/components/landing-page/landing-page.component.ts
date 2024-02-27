@@ -82,9 +82,5 @@ export class LandingPageComponent {
     loop()
   }
 
-  login_page() {
-    setTimeout(() => {
-      window.location.reload();
-    }, 100)
-  }
+  login_page() {}
 }

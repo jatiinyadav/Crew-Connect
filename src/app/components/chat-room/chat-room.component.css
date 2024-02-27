@@ -1,4 +1,20 @@
-@import '../../styles/common.css';
-::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+@import "../../styles/common.css";
+::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+#chatDiv {
+  height: 800px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 1250px) {
+  #chatDiv {
+    width: 850px;
+  }
 }

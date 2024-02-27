@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { UserMessage } from 'src/app/models/userMessage';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -31,10 +32,17 @@ export class LoginPageComponent {
 
   joinRoom(){
     const {username, roomname, imageURL} = this.joinGroupForm.value
+    const userMessage: UserMessage = {
+      message: '',
+      groupName: roomname,
+      imageURL: imageURL
+    }
     this.chatService.logged_in_username = username;
-    this.chatService.findGroupinDB(username, roomname, imageURL, false).then((created: boolean) => {
+
+
+    this.chatService.findGroupinDB(username, userMessage, false).then((created: boolean) => {
       if (created) {
-        this.chatService.joinRoom(username, roomname, imageURL)
+        this.chatService.joinRoom(username, roomname, userMessage)
           .then(() => {
             this.router.navigate(['/chat-room'])
           })

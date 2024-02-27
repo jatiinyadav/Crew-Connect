@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { UserMessage } from 'src/app/models/userMessage';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -32,7 +33,14 @@ export class CreateRoomComponent {
 
   async createRoom() {
     let { adminName, groupName, imageURL } = this.createGroupForm.value;
-    this.chartService.findGroupinDB(adminName, groupName, imageURL, true).then((created: boolean) => {
+
+    const userMessage : UserMessage = {
+      message: '',
+      groupName: groupName,
+      imageURL: imageURL
+    }
+
+    this.chartService.findGroupinDB(adminName, userMessage, true).then((created: boolean) => {
       if (!created) {
         this.chartService.joinRoom(adminName, groupName, imageURL)
           .then(() => {

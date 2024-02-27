@@ -4,19 +4,16 @@
         <app-header [show_button]="true"></app-header>
     </div>
     <div>
-        <h1 class="text-center text-4xl mb-10">{{groupName}}</h1>
-        <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;">
+        <div style="margin: 2rem auto; display: flex; justify-content: space-around; align-items: center; width: 100%;">
             <div>
                 <!-- <span *ngFor="let users of all_users; let last = last">{{ users }}{{ !last ? ', ' : '' }}</span> -->
-                <div id="chatDiv" [style.background-image]="'url(' + this.chatService.hoveredImageUrl + ')'" #scroll
-                    style="height: 800px; width: 850px; background-position: center; background-size: cover; color: white; overflow-y: scroll; border-radius: 5px;">
+                <div id="chatDiv" [style.background-image]="'url(' + this.chatService.hoveredImageUrl + ')'" #scroll>
                     <!-- <h1 >
                         {{messages.userName}} : {{messages.message}} on {{messages.sendOn | date}}
                     </h1> -->
                     <div *ngFor="let messages of all_messages">
                         <div *ngIf="messages.userName.length == 0; else not_logged_in_user" class="text-center mt-1">
-                            <span class="badge p-3">{{messages.message}} on {{messages.sendOn | date: 'h:mm a,
-                                MMMd'}}</span>
+                            <span class="badge p-3">{{messages.message}} on {{messages.sendOn | date: 'h:mm a,MMMd'}}</span>
                         </div>
                         <ng-template #not_logged_in_user>
                             <div class="chat chat-start" *ngIf="messages.userName != logged_user; else logged_in_user">
@@ -55,7 +52,7 @@
                         <input type="text" formControlName="message_user"
                             class="bg-white-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Your message..." required>
-                        <button type="submit" [disabled]="sendMessageForm.invalid" (click)="sendMessage()"
+                        <button type="submit" (click)="sendMessage()"
                             class="ml-2 inline-flex justify-center p-2 text-blue-600 rounded-md cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                             <svg class="w-5 h-5 rotate-90 mb-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor" viewBox="0 0 18 20">

@@ -1,4 +1,4 @@
-﻿using SignalRLearning.ChatInterfaces;
+using SignalRLearning.ChatInterfaces;
 
 namespace SignalRLearning.Services
 {
@@ -16,18 +16,6 @@ namespace SignalRLearning.Services
             }
         }
 
-        // Used to assign Connection ID to the user
-        public void AddUserConnectinID(string user, string connectionID)
-        {
-            //lock (Users)
-            //{
-            //    if(Users.ContainsKey(user))
-            //    {
-            //        Users[user] = connectionID;
-            //    }
-            //}
-        }
-
         // Get User by Connection ID
         public UserDetails GetUserByConnectionID(string connectionID)
         {
@@ -37,15 +25,6 @@ namespace SignalRLearning.Services
                 return Users.Where(x => x.Key == connectionID).Select(x => x.Value).FirstOrDefault()!;
             }
         }
-
-        // Get Connection ID by User 
-        //public string GetConnectionIDByUser(string user)
-        //{
-        //    lock (Users)
-        //    {
-        //        return Users.Where(x => x.Key == user).Select(x => x.Value).FirstOrDefault()!;
-        //    }
-        //}
 
         // Remove User from the List
         public void RemoveUser(string user)

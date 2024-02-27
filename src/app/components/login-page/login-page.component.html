@@ -3,11 +3,11 @@
         <app-header></app-header>
     </div>
     <div style="width: 90%; margin: 0 auto;">
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="loginAlign">
             <div>
                 <img src="../../../assets/img/chat1.png" alt="">
             </div>
-            <div style="width: 20%; margin: 0 auto;">
+            <div class="formAlign">
                 <form [formGroup]="joinGroupForm">
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-white-900 dark:text-white">Full
@@ -26,9 +26,9 @@
                     <button type="submit" [disabled]="joinGroupForm.invalid" (click)="joinRoom()"
                         class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Join
                         Room</button>
-
                 </form>
             </div>
+            
         </div>
     </div>
     <div>

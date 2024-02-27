@@ -3,18 +3,29 @@ import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signal
 import { BehaviorSubject } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
 import { Group } from '../models/group';
+import { UserMessage } from '../models/userMessage';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+
+  usersImages = [
+    '../../assets/users/nishant.jpeg',
+    '../../assets/users/jatin.jpeg',
+    '../../assets/users/hemant.jpeg',
+    '../../assets/users/radha.jpeg',
+    '../../assets/users/rohan.jpeg'
+  ]
+
   popupMessage = inject(NgToastService);
   public logged_in_username = "";
   public groupName = "";
   public imageURL = "";
   public isGroupJoined = false;
   public hoveredImageUrl = "https://images.unsplash.com/photo-1535332371349-a5d229f49cb5?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-  public userImage = "https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon"
+  public userImage = "";
   public all_messages: Group[] = []
   public all_online_users: string[] = []
 
@@ -37,11 +48,16 @@ export class ChatService {
   methods_signalr() {
     this.connection.on("AllMessages", (username: string, message: string, imageURL: string) => {
       console.log("Called");
+      this.usersImages.forEach(img => {
+        if (img.includes(this.formatUserName(username).split(' ')[0].toLowerCase())) {
+          imageURL = img;
+        }
+      });
       let newMessage: Group = {
         userName: `${this.formatUserName(username)}`,
         message: message,
         sendOn: Date.now(),
-        imageUrl: this.userImage
+        imageUrl: imageURL
       }
       console.log(newMessage);
 
@@ -54,12 +70,19 @@ export class ChatService {
       localStorage.setItem("logged_user", JSON.stringify({ email: username, username: this.logged_in_username, groupName: groupName, image: imageURL }))
       this.groupName = groupName;
       this.imageURL = imageURL;
-      this.messages(groupName);
-      this.popupMessage.success({ detail: `${this.formatUserName(username)} has joined the group.`, summary: `${username}`, duration: 5000, position: 'topRight' });
+
+      const userMessage: UserMessage = {
+        message: '',
+        groupName: groupName,
+        imageURL: ''
+      }
+
+      this.messages(userMessage);
+      this.popupMessage.success({ detail: `${username}`, summary: `${this.formatUserName(username)} has joined the group.`, duration: 5000, position: 'topRight' });
     })
 
     this.connection.on("LeaveGroup", (groupName: string, username: string) => {
-      this.popupMessage.error({ detail: `${this.formatUserName(username)} has left the chat.`, summary: `${username}`, duration: 5000, position: 'topRight' });
+      this.popupMessage.error({ summary: `${this.formatUserName(username)} has left the chat.`, detail: `${username}`, duration: 5000, position: 'topRight' });
     })
 
     this.connection.on("ConnectedUsers", (users: string[]) => {
@@ -88,7 +111,7 @@ export class ChatService {
   // Connection With Signal R
   public async startConnection() {
     try {
-      await this.connection.start()
+      await this.connection.start();
       console.log("Connnection Build");
     } catch (error) {
       console.log(error);
@@ -96,29 +119,29 @@ export class ChatService {
   }
 
   // Join Room 
-  public async joinRoom(User: string, Room: string, imageURL: string) {
+  public async joinRoom(User: string, Room: string, userMessage: UserMessage) {
     this.isGroupJoined = true;
-    return this.connection.invoke("JoinGroup", { User, Room }, "https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon")
+    return this.connection.invoke("JoinGroup", { User, Room }, userMessage)
   }
 
   // Send Messages 
-  public async sendMessage(message: string, groupName: string, imageURL: string) {
-    return this.connection.invoke("SendMessage", message, groupName, this.userImage)
+  public async sendMessage(userMessage: UserMessage) {
+    return this.connection.invoke("SendMessage", userMessage)
   }
 
   // Check If Group exits or not in DB
-  public async findGroupinDB(adminName: string, groupName: string, imageURL: string, createGroup: boolean): Promise<boolean> {
+  public async findGroupinDB(adminName: string, userMessage: UserMessage, createGroup: boolean): Promise<boolean> {
     adminName = this.formatUserName(adminName);
-    return this.connection.invoke("GetCollectionsNames", adminName, groupName, "https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon", createGroup).then((found: boolean) => {
-      found && this.popupMessage.error({ detail: `${groupName} already exists.`, summary: `Please use another name.`, duration: 5000, position: 'topRight' })
-      !found && this.popupMessage.success({ detail: `${groupName} created successfully`, summary: `xeT5 code copied to clipboard`, duration: 5000, position: 'topRight' })
+    return this.connection.invoke("GetCollectionsNames", userMessage, createGroup).then((found: boolean) => {
+      found && this.popupMessage.error({ detail: `${userMessage.groupName} already exists.`, summary: `Please use another name.`, duration: 5000, position: 'topRight' })
+      !found && this.popupMessage.success({ detail: `${userMessage.groupName} created successfully`, summary: `xeT5 code copied to clipboard`, duration: 5000, position: 'topRight' })
       return found;
     })
   }
 
   // Receive Messages
-  public async messages(groupName: string) {
-    this.connection.invoke("SendAllMessages", groupName).then((result: Group[]) => {
+  public async messages(userMessage: UserMessage) {
+    this.connection.invoke("SendAllMessages", userMessage).then((result: Group[]) => {
       let all_messages: Group[] = []
       result.forEach((user: Group) => {
         user.userName = this.formatUserName(user.userName);
