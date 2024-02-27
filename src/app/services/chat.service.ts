@@ -14,7 +14,7 @@ export class ChatService {
   public imageURL = "";
   public isGroupJoined = false;
   public hoveredImageUrl = "https://images.unsplash.com/photo-1535332371349-a5d229f49cb5?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
+  public userImage = "https://secure.gravatar.com/avatar/717177c5bab590398c9bcd8a04acf48c?s=192&d=identicon"
   public all_messages: Group[] = []
   public all_online_users: string[] = []
 
@@ -41,7 +41,7 @@ export class ChatService {
         userName: `${this.formatUserName(username)}`,
         message: message,
         sendOn: Date.now(),
-        imageUrl: imageURL
+        imageUrl: this.userImage
       }
       console.log(newMessage);
 
@@ -103,7 +103,7 @@ export class ChatService {
 
   // Send Messages 
   public async sendMessage(message: string, groupName: string, imageURL: string) {
-    return this.connection.invoke("SendMessage", message, groupName, imageURL)
+    return this.connection.invoke("SendMessage", message, groupName, this.userImage)
   }
 
   // Check If Group exits or not in DB

@@ -22,7 +22,6 @@ builder.Services.AddCors(options =>
         .AllowCredentials();
     });
 });
-builder.Services.Configure<DatabaseConnection>(builder.Configuration.GetSection("ChatDatabase"));
 
 var app = builder.Build();
 
