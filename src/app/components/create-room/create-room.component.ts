@@ -42,7 +42,7 @@ export class CreateRoomComponent {
 
     this.chartService.findGroupinDB(adminName, userMessage, true).then((created: boolean) => {
       if (!created) {
-        this.chartService.joinRoom(adminName, groupName, imageURL)
+        this.chartService.joinRoom(adminName, groupName, userMessage)
           .then(() => {
             this.router.navigate(['/chat-room'])
           })

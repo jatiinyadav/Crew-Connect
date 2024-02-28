@@ -13,8 +13,24 @@
   border-radius: 5px;
 }
 
+.chatRoomBG {
+  width: 100%;
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-size: cover;
+}
+
 @media screen and (min-width: 1250px) {
   #chatDiv {
     width: 850px;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .chatRoomBG {
+    height: auto;
+    background-size: cover;
   }
 }
