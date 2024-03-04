@@ -1,5 +1,3 @@
-using MongoDLL;
-using SignalRLearning.ChatInterfaces;
 using SignalRLearning.Hubs;
 using SignalRLearning.Services;
 
@@ -33,7 +31,6 @@ app.UseCors();
 app.UseAuthorization();
 app.UseRouting();
 app.MapControllers();
-app.MapHub<InsertChangeStream>("/chatdll");
 app.MapHub<ChatHub>("/chat");
 app.MapGet("/", () => "Hello, World");
 

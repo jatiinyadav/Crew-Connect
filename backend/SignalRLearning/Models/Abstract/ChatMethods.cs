@@ -13,5 +13,6 @@ namespace SignalRLearning.Models.Abstract
     public abstract void UserExitFromChat(IHubCallerClients clients, string connectionId, Exception? exception);
 
     public abstract Task UserJoinedGroup(IGroupManager groups, IHubCallerClients clients, string connectionId, UserDetails userDetails, UserMessage userMessage);
+
   }
 }
