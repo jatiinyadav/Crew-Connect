@@ -30,7 +30,7 @@ git clone https://github.com/jatiinyadav/Crew-Connect.git
 2. Change the working directory
 
 ```bash
-cd Crew-Connect
+cd Crew-Connect/frontend
 ```
 
 3. Install dependencies
