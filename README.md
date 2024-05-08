@@ -24,6 +24,7 @@ You can view the project in working [here](https://www.loom.com/share/f185afbdd6
 
 ## Contributing
 Each and every contribution matters, whether it's a small typo fix or a new feature. Your contribution will be appreciated by the community. 🤗
+You can refer to our [CONTRIBUTING.md](https://github.com/jatiinyadav/Crew-Connect/blob/master/CONTRIBUTING.md)
 
 ## Contact
 For any queries, please feel free to reach out to me at [mail](mailto:jatin27yadav@gmail.com) or Twitter - [@jatiin_yadav](https://twitter.com/jatiin_yadav).
