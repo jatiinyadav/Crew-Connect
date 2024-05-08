@@ -19,5 +19,5 @@ Enhance your discussions with a group chat feature, providing a collaborative en
   <img src="https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white" alt=".NET" />
 </a>
 
-## Project Demonstartion
+## Project Demonstration
 You can view the project in working [here](https://www.loom.com/share/f185afbdd6e347ba80a8d85c6af78dd9?sid=32fa8e44-ee1f-44f8-89c6-26a0de87b8c1).
