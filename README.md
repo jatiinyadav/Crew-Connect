@@ -21,3 +21,9 @@ Enhance your discussions with a group chat feature, providing a collaborative en
 
 ## Project Demonstration
 You can view the project in working [here](https://www.loom.com/share/f185afbdd6e347ba80a8d85c6af78dd9?sid=32fa8e44-ee1f-44f8-89c6-26a0de87b8c1).
+
+## Contributing
+Each and every contribution matters, whether it's a small typo fix or a new feature. Your contribution will be appreciated by the community. 🤗
+
+## Contact
+For any queries, please feel free to reach out to me at [mail](mailto:jatin27yadav@gmail.com) or Twitter - [@jatiin_yadav](https://twitter.com/jatiin_yadav).
