@@ -12,6 +12,10 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class CreateRoomComponent {
 
+  constructor(
+    private toast: NgToastService
+  ) { }
+
   createGroupForm!: FormGroup;
   formBuilder = inject(FormBuilder)
   router = inject(Router);
@@ -31,6 +35,10 @@ export class CreateRoomComponent {
     // this.adminNameInput.nativeElement.focus();
   }
 
+  showSuccess() {
+    this.toast.success({detail:"Success",summary:'Group name is copied to a clipboard!',duration:5000}); // Popup Method
+  }
+
   async createRoom() {
     let { adminName, groupName, imageURL } = this.createGroupForm.value;
 
@@ -39,6 +47,9 @@ export class CreateRoomComponent {
       groupName: groupName,
       imageURL: imageURL
     }
+
+    navigator.clipboard.writeText(groupName) // Copying group name to a clipboard
+    this.showSuccess() // Show popup
 
     this.chartService.findGroupinDB(adminName, userMessage, true).then((created: boolean) => {
       if (!created) {
