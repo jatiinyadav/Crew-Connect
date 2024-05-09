@@ -55,7 +55,9 @@ export class CreateRoomComponent {
       if (!created) {
         this.chartService.joinRoom(adminName, groupName, userMessage)
           .then(() => {
-            this.router.navigate(['/chat-room'])
+            setTimeout(() => {
+              this.router.navigate(['/chat-room']) // Redirect
+            }, 2000); // Wait for 2 seconds
           })
           .catch((err) => {
             console.log(err);
