@@ -8,3 +8,17 @@
   color: white;
   font-family: "Montserrat", sans-serif;
 }
+.inner-landing {
+  overflow: hidden;
+  h: auto;
+}
+.outer-landing {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.inner-container {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
