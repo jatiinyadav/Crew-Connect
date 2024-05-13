@@ -62,11 +62,6 @@ export class ChatRoomComponent {
 
   async sendMessage() {
     const { message_user } = this.sendMessageForm.value;
-    this.chatService.usersImages.forEach(img => {
-      if (img.includes(this.logged_user.split(' ')[0].toLowerCase())) {
-        this.imageURL = img;
-      }
-    });
 
     const userMessage : UserMessage = {
       message: message_user,

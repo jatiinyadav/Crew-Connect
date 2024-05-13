@@ -11,14 +11,6 @@ import { UserMessage } from '../models/userMessage';
 })
 export class ChatService {
 
-  usersImages = [
-    '../../assets/users/nishant.jpeg',
-    '../../assets/users/jatin.jpeg',
-    '../../assets/users/hemant.jpeg',
-    '../../assets/users/radha.jpeg',
-    '../../assets/users/rohan.jpeg'
-  ]
-
   popupMessage = inject(NgToastService);
   public logged_in_username = "";
   public groupName = "";
@@ -48,11 +40,6 @@ export class ChatService {
   methods_signalr() {
     this.connection.on("AllMessages", (username: string, message: string, imageURL: string) => {
       console.log("Called");
-      this.usersImages.forEach(img => {
-        if (img.includes(this.formatUserName(username).split(' ')[0].toLowerCase())) {
-          imageURL = img;
-        }
-      });
       let newMessage: Group = {
         userName: `${this.formatUserName(username)}`,
         message: message,
