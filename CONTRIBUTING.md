@@ -137,8 +137,8 @@ Your pull request will now be visible to the maintainers of the original reposit
    Launch GitHub Desktop and log in to your GitHub account if you haven't already.
 
 2. **Clone the Repository:**
-   - If you haven't cloned the ResourceHub repository yet, you can do so by clicking on the "File" menu and selecting "Clone Repository."
-   - Choose the ResourceHub repository from the list of repositories on GitHub and clone it to your local machine.
+   - If you haven't cloned the Crew-Connect repository yet, you can do so by clicking on the "File" menu and selecting "Clone Repository."
+   - Choose the Crew-Connect repository from the list of repositories on GitHub and clone it to your local machine.
 
 3. **Switch to the Correct Branch:**
    - Ensure you are on the branch that you want to submit a pull request for.
@@ -156,7 +156,7 @@ Your pull request will now be visible to the maintainers of the original reposit
    After committing your changes, click the "Push origin" button in the top right corner of GitHub Desktop to push your changes to your forked repository on GitHub.
 
 7. **Create a Pull Request:**
-   - Go to the GitHub website and navigate to your fork of the ResourceHub repository.
+   - Go to the GitHub website and navigate to your fork of the Crew-Connect repository.
    - You should see a button to "Compare & pull request" between your fork and the original repository. Click on it.
 
 8. **Review and Submit:**
@@ -164,7 +164,7 @@ Your pull request will now be visible to the maintainers of the original reposit
    - Once you're satisfied, click the "Create pull request" button to submit your pull request.
 
 9. **Wait for Review:**
-    Your pull request will now be available for review by the project maintainers. They may provide feedback or ask for changes before merging your pull request into the main branch of the ResourceHub repository.
+    Your pull request will now be available for review by the project maintainers. They may provide feedback or ask for changes before merging your pull request into the main branch of the Crew-Connect repository.
 
 Congratulations! You have successfully created a pull request to contribute your changes to the repository. Remember to monitor the pull request for any updates or feedback from the maintainers.
 
