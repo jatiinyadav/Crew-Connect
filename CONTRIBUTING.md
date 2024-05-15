@@ -10,7 +10,9 @@ Thank you for taking the time to contribute to the project. Please take a moment
 - Mention the issue number in the PRs and describe all the changes that you have made briefly in the PR(if possible attach a screen recording showing the changes you made).
 
 ## How to Contribute? 🤔
-
+<details>
+   <summary>Using Fork</summary>
+   
 ### Step 1: Fork the Repository
 
 Click on the "Fork" button.
@@ -130,9 +132,10 @@ Review your pull request to ensure everything is correct, and then click on the 
 ### Congratulations! 🎉
 
 Your pull request will now be visible to the maintainers of the original repository. They will review your changes, provide feedback if necessary, and decide whether to merge them into the main branch.
-
-### Alternatively contribute using GitHub Desktop
-
+</details>
+<details>
+   <summary>Alternatively contribute using GitHub Desktop</summary>
+   
 1. **Open GitHub Desktop:**
    Launch GitHub Desktop and log in to your GitHub account if you haven't already.
 
@@ -167,7 +170,7 @@ Your pull request will now be visible to the maintainers of the original reposit
     Your pull request will now be available for review by the project maintainers. They may provide feedback or ask for changes before merging your pull request into the main branch of the Crew-Connect repository.
 
 Congratulations! You have successfully created a pull request to contribute your changes to the repository. Remember to monitor the pull request for any updates or feedback from the maintainers.
-
+</details>
 ⭐️ Support the Project
 If you find this project helpful, please consider giving it a star on GitHub! Your support helps to grow the project and reach more contributors.
 
