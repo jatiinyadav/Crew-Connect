@@ -44,7 +44,10 @@ export class ChatService {
         userName: `${this.formatUserName(username)}`,
         message: message,
         sendOn: Date.now(),
-        imageUrl: imageURL
+        imageUrl: imageURL,
+        reactions: [],
+        id: 0,
+        audioURL: null
       }
       console.log(newMessage);
 
@@ -52,7 +55,7 @@ export class ChatService {
       this.all_messages$.next(this.all_messages);
     })
 
-    this.connection.on("JoinedGroup", (groupName: string, username: string, imageURL: string) => {
+    this.connection.on("JoinedGroup", (groupName: string, username: string, imageURL: string, reactions: any, id: number) => {
       this.logged_in_username = `${this.formatUserName(username)}`;
       localStorage.setItem("logged_user", JSON.stringify({ email: username, username: this.logged_in_username, groupName: groupName, image: imageURL }))
       this.groupName = groupName;

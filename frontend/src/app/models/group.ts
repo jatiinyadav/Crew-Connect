@@ -1,6 +1,9 @@
 export interface Group{
+    reactions: string[],
+    id: number,
     imageUrl: string,
     userName: string,
     message: string,
-    sendOn: number
+    sendOn: number,
+    audioURL: string | null
 }
