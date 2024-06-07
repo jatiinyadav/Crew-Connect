@@ -1,5 +1,13 @@
 # Crew Connect
 ![crew_connect](https://github.com/jatiinyadav/Crew-Connect/assets/73248007/8a291b1e-6552-446a-8840-e43ff6933f61)
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Tech Stack](#tech-stack)
+- [Project Demonstration](#project-demonstration)
+- [Contributing](#contributing)
+- [Contact](#contact)
+
 ## 📌 Introduction
 <a href="https://awesome.re" target="_blank" rel="noopener noreferrer">
   <img src="https://awesome.re/badge.svg" alt="Awesome" />
