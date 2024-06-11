@@ -1,5 +1,19 @@
 # Contributor Covenant Code of Conduct
 
+## Table of Contents
+1. [Our Pledge](#our-pledge)
+2. [Our Standards](#our-standards)
+3. [Enforcement Responsibilities](#enforcement-responsibilities)
+4. [Scope](#scope)
+5. [Enforcement](#enforcement)
+6. [Enforcement Guidelines](#enforcement-guidelines)
+   - [1. Correction](#1-correction)
+   - [2. Warning](#2-warning)
+   - [3. Temporary Ban](#3-temporary-ban)
+   - [4. Permanent Ban](#4-permanent-ban)
+7. [Attribution](#attribution)
+
+
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
