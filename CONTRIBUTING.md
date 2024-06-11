@@ -2,6 +2,15 @@
 
 Thank you for taking the time to contribute to the project. Please take a moment to read the following guidelines before contributing:
 
+## Table of Contents
+- [Important Points to Keep in Mind Before Starting](#important-points-to-keep-in-mind-before-starting)
+- [How to Contribute?](#how-to-contribute)
+  - [Using Fork](#using-fork)
+  - [Using GitHub Desktop](#using-github-desktop)
+- [Commit Message Guidelines using Commitlint](#commit-message-guidelines-using-commitlint)
+- [Support the Project](#support-the-project)
+
+
 ## Important point to keep in mind before starting ✅
 
 - If anything is missing or if you find something that needs to be enhanced/fixed/modified in the project, please feel free to [create an issue.](https://github.com/jatiinyadav/Crew-Connect/issues/new/choose)
