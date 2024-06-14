@@ -1,7 +1,5 @@
 ## Installation
 
-# Installation
-
 ## Table of Contents
 - [Required Tools](#required-tools)
 - [Frontend Installation](#frontend-installation)
