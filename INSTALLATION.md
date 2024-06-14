@@ -1,5 +1,21 @@
 ## Installation
 
+# Installation
+
+## Table of Contents
+- [Required Tools](#required-tools)
+- [Frontend Installation](#frontend-installation)
+  - [1. Clone the Repository](#1-clone-the-repository)
+  - [2. Open Project in Visual Studio Code](#2-open-project-in-visual-studio-code)
+  - [3. Install Dependencies](#3-install-dependencies)
+  - [4. Start Frontend](#4-start-frontend)
+- [Backend Installation](#backend-installation)
+  - [1. Connect MongoDB Compass](#1-connect-mongodb-compass)
+  - [2. Create Database and Collection](#2-create-database-and-collection)
+  - [3. Open Project in Visual Studio](#3-open-project-in-visual-studio)
+  - [4. Load Solution](#4-load-solution)
+  - [5. Start Debugging](#5-start-debugging)
+
 #### Required Tools
 
 Before proceeding with the installation, ensure that you have the necessary tools installed on your system. If any of these tools are missing, you can download and install them from the provided links:
