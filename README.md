@@ -1,12 +1,20 @@
 # Crew Connect
 ![crew_connect](https://github.com/jatiinyadav/Crew-Connect/assets/73248007/8a291b1e-6552-446a-8840-e43ff6933f61)
-## 📌 Introduction
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Tech Stack](#tech-stack)
+- [Project Demonstration](#project-demonstration)
+- [Contributing](#contributing)
+- [Contact](#contact)
+
+## Introduction
 <a href="https://awesome.re" target="_blank" rel="noopener noreferrer">
   <img src="https://awesome.re/badge.svg" alt="Awesome" />
 </a> <br>
 Enhance your discussions with a group chat feature, providing a collaborative environment for more dynamic conversations.
-	
-## 👨‍💻 Tech Stack
+ 
+## Tech Stack
 <a href="/" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white" alt="Angular JS" />
 </a>
