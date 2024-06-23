@@ -34,3 +34,54 @@
     background-size: cover;
   }
 }
+
+
+.chat-reactions {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.chat-reactions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.chat-reactions div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.form-control {
+  background: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+button {
+  background: #007bff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+audio {
+  width: 100%;
+  max-width: 400px;
+}
