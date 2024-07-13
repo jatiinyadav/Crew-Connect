@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [Required Tools](#required-tools)
+- [Installation using Docker](#with-docker)
 - [Frontend Installation](#frontend-installation)
   - [1. Clone the Repository](#1-clone-the-repository)
   - [2. Open Project in Visual Studio Code](#2-open-project-in-visual-studio-code)
@@ -26,6 +27,39 @@ Before proceeding with the installation, ensure that you have the necessary tool
 - [MongoDB Compass](https://www.mongodb.com/try/download/compass)
 
 Once you have all the required tools installed, you can proceed with the installation of the project.
+
+
+#### With Docker
+
+Clone the Crew Connect repository from GitHub.
+```bash
+git clone https://github.com/jatiinyadav/Crew-Connect.git
+```
+
+![Clone Repository](./images/installation/step-1.png)
+
+#### 2. Open Project in Visual Studio Code
+
+Navigate to the project directory and open it in Visual Studio Code.
+```bash
+cd Crew-Connect
+code .
+```
+
+![Open in Visual Studio Code](./images/installation/step-2.png)
+
+#### 3. Run Docker Compose
+
+Navigate to the project directory and open it in Visual Studio Code.
+```bash
+docker-compose up
+```
+
+Your Frontend is now running at [localhost:4200](http://localhost:4200/)
+Your Backend is now running at [localhost:80](http://localhost:80/)
+
+
+#### Without Docker
 
 ### Frontend Installation
 
