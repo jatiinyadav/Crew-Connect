@@ -1,0 +1,23 @@
+.footer nav a {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer nav a:hover {
+    transform: scale(1.2);
+}
+
+.footer nav .icon-x  {
+    fill: #ffffff; /* White for X (Twitter) */
+}
+
+.footer nav .icon-x:hover svg path {
+    fill: black; /* White for X (Twitter) */
+}
+
+.footer nav .icon-youtube:hover svg path {
+    fill: #FF0000; /* Red for YouTube */
+}
+
+.footer nav .icon-facebook:hover svg path {
+    fill: #4267B2; /* Blue for Facebook */
+}
